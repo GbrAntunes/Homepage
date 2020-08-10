@@ -1,5 +1,5 @@
 # Custom Homepage
-![Homepage](https://github.com/GbrAntunes/Homepage/tree/master/src/assets/homepage.png)
+![Homepage](https://github.com/GbrAntunes/Homepage/blob/master/src/assets/homepage.png?raw=true)
 <br />
 This project was made inspired by a Dev.to article i saw.
 In your custom homepage, you'll have some widgets and your original Google new tab.
