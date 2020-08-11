@@ -57,7 +57,7 @@ function Home() {
   // Clock and calendar
   useEffect(() => {
     const date = new Date()
-    
+
     setInterval(() => {
       const h = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours(); // 0 - 23
       const m = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes(); // 0 - 59
@@ -72,7 +72,7 @@ function Home() {
     var yyyy = date.getFullYear();
 
     const today = parseISO(`${yyyy}-${mm}-${dd}`);
-    
+
     const formattedDate = format(
       today,
       "MMMM dd'"
@@ -85,7 +85,7 @@ function Home() {
   useEffect(() => {
     axios.get('http://api.openweathermap.org/data/2.5/weather?q=manaus,br&appId=ca529b851babc01b64e7324e1be343eb')
       .then(response => {
-        const {main, weather: apiWeather} = response.data
+        const { main, weather: apiWeather } = response.data
 
         setWeather({
           temperature: Math.round(main.temp - 273.15),
@@ -112,10 +112,12 @@ function Home() {
       <GooglePanel id="google-panel">
         <h1 id="google">Google</h1>
 
-        <div className="input-box">
-          <MdSearch size={20} />
-          <input type="text" placeholder="Pesquise no Google ou digite uma URL" autoFocus />
-        </div>
+        <form action="https://www.google.com/search" method="Get" >
+          <div className="input-box">
+            <MdSearch size={20} />
+            <input type="text" name="q" placeholder="Pesquise no Google ou digite uma URL" autoFocus />
+          </div>
+        </form>
 
         <div className="favorites-grid">
           <a href="https://www.youtube.com">
