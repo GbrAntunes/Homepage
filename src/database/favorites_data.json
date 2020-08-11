@@ -1,0 +1,10 @@
+{
+  "description": "This is your super database. Insert a label and a image path to add items in your grid. Only 8 items are supported",
+  "values": [
+    {
+      "label": "YouTube",
+      "link": "https://www.youtube.com",
+      "img": "youtube.svg"
+    }
+  ]
+}

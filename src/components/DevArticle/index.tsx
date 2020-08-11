@@ -5,12 +5,15 @@ import { ArticleBox, Title, Author } from './styles'
 interface DevArticleProps {
   title: string
   author: string
+  url: string
 }
 
-const DevArticle: React.FC<DevArticleProps> = ({ title, author }) => {
+const DevArticle: React.FC<DevArticleProps> = ({ title, author, url }) => {
   return (
     <ArticleBox>
-      <Title>{title}</Title>
+      <a href={url}>
+        <Title>{title}</Title>
+      </a>
       <Author>by {author}</Author>
     </ArticleBox>
   )
