@@ -52,15 +52,16 @@ function Home() {
       setNews(response.data)
     })
 
-  }, [news])
+  }, [])
 
   // Clock and calendar
   useEffect(() => {
     const date = new Date()
 
     setInterval(() => {
-      const h = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours(); // 0 - 23
-      const m = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes(); // 0 - 59
+      const dateTime = new Date()
+      const h = dateTime.getHours() < 10 ? `0${dateTime.getHours()}` : dateTime.getHours(); // 0 - 23
+      const m = dateTime.getMinutes() < 10 ? `0${dateTime.getMinutes()}` : dateTime.getMinutes(); // 0 - 59
 
       setTime(`
         ${h}:${m}
