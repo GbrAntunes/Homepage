@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { MdSearch } from 'react-icons/md'
 import axios from 'axios'
-import { parseISO, format, formatRelative } from 'date-fns';
 
 import DevArticle from '../../components/DevArticle'
 import Widgets from '../../components/Widgets'
-// import data from '../../database/favorites_data.json'
-
-import youtube from '../../assets/youtube.svg'
-import dribbble from '../../assets/dribbble.svg'
-import pinterest from '../../assets/pinterest.svg'
-import notion from '../../assets/notion.svg'
-import github from '../../assets/github.svg'
-import gmail from '../../assets/gmail.svg'
-import dev from '../../assets/dev.svg'
-import figma from '../../assets/figma.svg'
+import favoritesData from '../../database/favorites'
+import getCurrentMonth from '../../utils/getCurrentMonth'
+import getCurrentTime from '../../utils/getCurrentTime'
 
 import { Container, GooglePanel, NewsPanel } from './styles'
 
@@ -51,33 +43,16 @@ function Home() {
     axios.get('https://dev.to/api/articles?top=1&per_page=4').then(response => {
       setNews(response.data)
     })
-
   }, [])
 
   // Clock and calendar
   useEffect(() => {
-    const date = new Date()
-
+    
     setInterval(() => {
-      const dateTime = new Date()
-      const h = dateTime.getHours() < 10 ? `0${dateTime.getHours()}` : dateTime.getHours(); // 0 - 23
-      const m = dateTime.getMinutes() < 10 ? `0${dateTime.getMinutes()}` : dateTime.getMinutes(); // 0 - 59
-
-      setTime(`
-        ${h}:${m}
-      `)
+      setTime( getCurrentTime() )
     }, 1000);
 
-    var dd = String(date.getDate()).padStart(2, '0');
-    var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = date.getFullYear();
-
-    const today = parseISO(`${yyyy}-${mm}-${dd}`);
-
-    const formattedDate = format(
-      today,
-      "MMMM dd'"
-    );
+    const formattedDate = getCurrentMonth()
 
     setDate(formattedDate)
   }, [time, date])
@@ -121,38 +96,14 @@ function Home() {
         </form>
 
         <div className="favorites-grid">
-          <a href="https://www.youtube.com">
-            <img src={youtube} alt="Youtube" />
-            <p>Youtube</p>
-          </a>
-          <a href="https://www.dribbble.com">
-            <img src={dribbble} alt="dribbble" />
-            <p>Dribbble</p>
-          </a>
-          <a href="https://www.pinterest.com">
-            <img src={pinterest} alt="pinterest" />
-            <p>Pinterest</p>
-          </a>
-          <a href="https://www.notion.com">
-            <img src={notion} alt="notion" />
-            <p>Notion</p>
-          </a>
-          <a href="https://www.github.com">
-            <img src={github} alt="github" />
-            <p>Github</p>
-          </a>
-          <a href="https://www.gmail.com">
-            <img src={gmail} alt="gmail" />
-            <p>Gmail</p>
-          </a>
-          <a href="https://www.dev.to">
-            <img src={dev} alt="dev" />
-            <p>Dev</p>
-          </a>
-          <a href="https://www.figma.com">
-            <img src={figma} alt="figma" />
-            <p>Figma</p>
-          </a>
+          {favoritesData.values.map((favoriteItem) => {
+            return (
+              <a key={favoriteItem.label} href={favoriteItem.link}>
+                <img src={favoriteItem.img} alt={favoriteItem.label} />
+                <p>{favoriteItem.label}</p>
+              </a>
+            )
+          })}
         </div>
       </GooglePanel>
 
