@@ -9,9 +9,9 @@ You can customize the shortcuts on src/database/favorites.ts
 <br />
 
 <p align="center">
- <a href="#Initializing">Initializing</a> •
- <a href="#Features">Features</a> • 
- <a href="#Techs">Techs</a>
+ <a href="#-Initializing">Initializing</a> •
+ <a href="#-Features">Features</a> • 
+ <a href="#-Techs">Techs</a>
 </p>
 
 ## 🔛 Initializing
